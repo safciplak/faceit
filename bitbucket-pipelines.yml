@@ -1,0 +1,43 @@
+options:
+  docker: true
+
+pipelines:
+  default:
+    - step:
+        name: Build and Push Image ECR
+        script:
+          # build the image
+          - docker build -t faceit .
+
+          # use the pipe to push to AWS ECR
+          - pipe: atlassian/aws-ecr-push-image:1.5.0
+            variables:
+              AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+              AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+              AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+              IMAGE_NAME: faceit
+              TAGS: '${BITBUCKET_BUILD_NUMBER}'
+        caches:
+          - docker
+    - step:
+        name: Deploy2Stage
+        image: fabfuel/ecs-deploy
+        deployment: staging
+        trigger: manual
+        clone:
+          enabled: false
+        script:
+          - ecs deploy ecs-cluster-stage faceit-stage -t $BITBUCKET_BUILD_NUMBER --timeout -1
+        caches:
+          - docker
+    - step:
+        name: Deploy2Prod (ya hak!)
+        image: fabfuel/ecs-deploy
+        deployment: production
+        trigger: manual
+        clone:
+          enabled: false
+        script:
+          - ecs deploy ecs-cluster-prod faceit-prod -t $BITBUCKET_BUILD_NUMBER --timeout -1
+        caches:
+          - docker

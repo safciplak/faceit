@@ -1,0 +1,166 @@
+{
+	"info": {
+		"_postman_id": "64d8cf10-def7-4937-895d-305624c6e3d3",
+		"name": "Faceit",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\" : \"ok\",\n    \"last_name\": \"ok\",\n    \"country\" : \"TR\",\n    \"email\": \"safakciplak1990@gmail.com\",\n    \"nickname\": \"ok\",\n    \"password\" : \"123456\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\" : \"ok\",\n    \"last_name\": \"ok\",\n    \"country\" : \"TR\",\n    \"email\": \"1@gmail.com\",\n    \"nickname\": \"ok\",\n    \"password\" : \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/ab62e0e9-3e8e-4bba-8ab9-ef58e8e9ca22",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"ab62e0e9-3e8e-4bba-8ab9-ef58e8e9ca22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\" : \"ok\",\n    \"last_name\": \"ok\",\n    \"country\" : \"TR\",\n    \"email\": \"1@gmail.com\",\n    \"nickname\": \"ok\",\n    \"password\" : \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/ab62e0e9-3e8e-4bba-8ab9-ef58e8e9ca22",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"ab62e0e9-3e8e-4bba-8ab9-ef58e8e9ca22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users?country=UK&page=1&page_size=4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "country",
+									"value": "UK"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "health check",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/health-check",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"health-check"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
